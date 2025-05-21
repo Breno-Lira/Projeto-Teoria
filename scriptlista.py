@@ -16,7 +16,7 @@ def main():
     print("Escolha o tamanho da lista (quantidade de numeros)\n1- 100\n2- 5000\n3- 50000\n4- 100000")
     escolha = input("Opção: ")
 
-    tamanho = {"1": 100 , "2": 5000 , "3": 50000, "4": 100000}
+    tamanho = {"1": 500 , "2": 5000 , "3": 50000, "4": 500000}
     max_valor = 1000000
     tam = tamanho.get(escolha)
     
