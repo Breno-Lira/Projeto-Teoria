@@ -13,7 +13,7 @@ def salvar_em_arquivo(lista, nome_arquivo):
 
 def main():
 
-    print("Escolha o tamanho da lista (quantidade de numeros)\n1- 100\n2- 5000\n3- 50000\n4- 100000")
+    print("Escolha o tamanho da lista (quantidade de numeros)\n1- 500\n2- 5000\n3- 50000\n4- 500000")
     escolha = input("Opção: ")
 
     tamanho = {"1": 500 , "2": 5000 , "3": 50000, "4": 500000}

@@ -31,7 +31,7 @@ def calcular_desvio_padrao(valores, media):
     return math.sqrt(variancia)
 
 tamanhos = [500, 5000, 50000, 500000]
-repeticoes = 20
+repeticoes = 15
 
 for tamanho in tamanhos:
     tempos = medir_tempo(tamanho, repeticoes)
