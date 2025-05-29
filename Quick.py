@@ -1,4 +1,3 @@
-import random
 import time
 import math
 
@@ -10,41 +9,44 @@ def quick_sort(arr):
     maior = [x for x in arr[1:] if x > pivot]
     return quick_sort(menor) + [pivot] + quick_sort(maior)
 
-def medir_tempo(n, repeticoes):
-    tempos = []
-    for i in range(repeticoes):
-        lista = [random.randint(1, 1000000) for _ in range(n)]
-        inicio = time.time()
-        quick_sort(lista)
-        fim = time.time()
-        duracao = fim - inicio
-        tempos.append(duracao)
-        print(f"Execução {i + 1} / {repeticoes} (tamanho {n}) : {duracao:.5f}s")
-    return tempos
-
 def calcular_media(valores):
-    soma = sum(valores)
-    return soma/len(valores)
+    return sum(valores) / len(valores)
 
 def calcular_desvio_padrao(valores, media):
     variancia = sum((x - media) ** 2 for x in valores) / len(valores)
     return math.sqrt(variancia)
 
-tamanhos = [500, 5000, 50000, 500000]
-repeticoes = 15
+def ler_lista_arquivo(nome_arquivo):
+    with open(nome_arquivo, 'r') as arquivo:
+        conteudo = arquivo.read().strip().split(',')
+        lista = [int(num.strip()) for num in conteudo if num.strip().isdigit()]
+    print(f"{len(lista)} números lidos do arquivo '{nome_arquivo}'.")
+    return lista
 
-for tamanho in tamanhos:
-    tempos = medir_tempo(tamanho, repeticoes)
+def medir_tempo(lista, repeticoes):
+    tempos = []
+    for i in range(repeticoes):
+        lista_copia = lista.copy()
+        inicio = time.time()
+        quick_sort(lista_copia)
+        fim = time.time()
+        duracao = fim - inicio
+        tempos.append(duracao)
+        print(f"Execução {i + 1} / {repeticoes} : {duracao:.5f}s")
+    return tempos
+
+def main():
+    nome_arquivo = "lista_numeros.txt"
+    repeticoes = int(input("Quantas vezes deseja repetir o teste? "))
+
+    lista = ler_lista_arquivo(nome_arquivo)
+    tempos = medir_tempo(lista, repeticoes)
     media = calcular_media(tempos)
-    desvio = calcular_desvio_padrao(tempos,media)
-    print(f"Tamanho {tamanho} : média = {media:.5f}s, desvio padrão = {desvio:.5f}s")
+    desvio = calcular_desvio_padrao(tempos, media)
 
+    print(f"\nResultados para vetor com {len(lista)} elementos:")
+    print(f"Média do tempo: {media:.5f}s")
+    print(f"Desvio padrão: {desvio:.5f}s")
 
-
-
-
-
-
-
-
-
+if __name__ == "__main__":
+    main()
