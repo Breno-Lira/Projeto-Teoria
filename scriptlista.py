@@ -3,31 +3,41 @@ import random
 def gerar_lista(tamanho, max_valor):
     return [random.randint(0, max_valor) for _ in range(tamanho)]
 
-
-def salvar_em_arquivo(lista, nome_arquivo):
+def salvar_em_arquivo(lista, nome_arquivo, descricao):
     with open(nome_arquivo, 'w') as arquivo:
         for numero in lista:
             arquivo.write(f"{numero},\n")
-    print(f"Lista salva com sucesso em '{nome_arquivo}'.")
-
+    print(f"{descricao} salvo com sucesso em '{nome_arquivo}'.")
 
 def main():
+    print("Escolha o tamanho da lista (quantidade de números):")
+    print("1 - 500\n2 - 5000\n3 - 50000\n4 - 500000")
+    escolha_tam = input("Opção: ")
 
-    print("Escolha o tamanho da lista (quantidade de numeros)\n1- 500\n2- 5000\n3- 50000\n4- 500000")
-    escolha = input("Opção: ")
+    tamanhos = {"1": 500, "2": 5000, "3": 50000, "4": 500000}
+    tam = tamanhos.get(escolha_tam)
+    
+    if tam is None:
+        print("Opção inválida de tamanho.")
+        return
 
-    tamanho = {"1": 500 , "2": 5000 , "3": 50000, "4": 500000}
+    print("\nEscolha o tipo de caso para salvar:")
+    print("1 - Caso médio (aleatório)")
+    print("2 - Melhor caso (ordenado crescente)")
+    print("3 - Pior caso (ordenado decrescente)")
+    escolha_caso = input("Opção: ")
+
     max_valor = 1000000
-    tam = tamanho.get(escolha)
-    
+    lista_base = gerar_lista(tam, max_valor)
 
-    lista = gerar_lista(tam, max_valor)
-    salvar_em_arquivo(lista, "lista_numeros.txt")
-    
-    print("Lista gerada, procure pelo arquivo lista_numeros.txt")
-    
+    if escolha_caso == "1":
+        salvar_em_arquivo(lista_base, "lista_numeros.txt", "CASO MÉDIO (lista aleatória)")
+    elif escolha_caso == "2":
+        salvar_em_arquivo(sorted(lista_base), "lista_numeros.txt", "MELHOR CASO (lista ordenada crescente)")
+    elif escolha_caso == "3":
+        salvar_em_arquivo(sorted(lista_base, reverse=True), "lista_numeros.txt", "PIOR CASO (lista ordenada decrescente)")
+    else:
+        print("Opção inválida de caso.")
 
 if __name__ == "__main__":
     main()
-
-
