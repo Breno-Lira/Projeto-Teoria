@@ -37,7 +37,7 @@ def medir_tempo(lista, repeticoes):
 
 def main():
     nome_arquivo = "lista_numeros.txt"
-    repeticoes = int(input("Quantas vezes deseja repetir o teste? "))
+    repeticoes = 15
 
     lista = ler_lista_arquivo(nome_arquivo)
     tempos = medir_tempo(lista, repeticoes)

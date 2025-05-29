@@ -22,7 +22,7 @@ int main() {
     tempo_execucao = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
     printf("Vetor ordenado: ");
-    imprimir(vetor, tamanho);
+    // imprimir(vetor, tamanho);
 
     printf("Tempo de execucao do QuickSort: %.6f segundos\n", tempo_execucao);
 
