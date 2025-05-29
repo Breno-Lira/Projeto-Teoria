@@ -19,10 +19,10 @@ def salvar_em_arquivo(lista, nome_arquivo, descricao):
 
 def main():
     print("Escolha o tamanho da lista (quantidade de números):")
-    print("1 - 500\n2 - 5000\n3 - 50000\n4 - 500000")
+    print("1 - 100\n2 - 250\n3 - 500\n4 - 750")
     escolha_tam = input("Opção: ")
 
-    tamanhos = {"1": 500, "2": 5000, "3": 50000, "4": 500000}
+    tamanhos = {"1": 100, "2": 250, "3": 500, "4": 750}
     tam = tamanhos.get(escolha_tam)
     
     if tam is None:
